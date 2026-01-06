@@ -9,8 +9,10 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "seed:admin": "node scripts/seedAdmin.js",
-    "seed:movies": "node scripts/seedMovies.js"
-    "import:tmdb": "node scripts/importTmdbTopRated.js"
+    "seed:movies": "node scripts/seedMovies.js",
+    "import:imdb:top250": "node scripts/importImdbTop250.js",
+    "cleanup:mock": "node scripts/cleanupMockMovies.js",
+    "enrich:omdb": "node scripts/enrichOmdbMissing.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

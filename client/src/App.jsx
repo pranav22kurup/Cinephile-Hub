@@ -14,7 +14,7 @@ export default function App() {
 
   return (
     <>
-      <AppBar position="static">
+      <AppBar position="static" color="default">
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>Cinephile Hub</Typography>
           <Button color="inherit" component={Link} to="/">Home</Button>

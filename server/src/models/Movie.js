@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const MovieSchema = new Schema(
   {
+    imdbId: { type: String, index: true, unique: true, sparse: true },
     name: { type: String, required: true, index: true },
     description: { type: String, default: '' },
     rating: { type: Number, default: 0, index: true },
