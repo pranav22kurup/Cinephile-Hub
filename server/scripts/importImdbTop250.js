@@ -126,20 +126,19 @@ async function run() {
   await once(rl, 'close');
   console.log(`Collected ${candidates.length} candidates`);
 
-  // Sort and take top 250
   candidates.sort((a, b) => (b.rating - a.rating) || (b.numVotes - a.numVotes));
   let movies = candidates.slice(0, 250);
 
-  // Optional enrichment via OMDb (plot, poster, director)
+
   movies = await enrichWithOmdb(movies);
 
-  // Upsert into DB by imdbId
+  
   console.log('Upserting movies...');
   const batchQueue = new PQueue({ concurrency: 8 });
   let count = 0;
   await Promise.all(movies.map((m) => batchQueue.add(async () => {
     const doc = { ...m };
-    delete doc.numVotes; // not stored in schema
+    delete doc.numVotes; 
     await Movie.updateOne(
       { imdbId: m.imdbId },
       { $set: doc },

@@ -40,8 +40,7 @@ async function startQueueProcessor() {
       { connection: conn, concurrency: 4 }
     );
   } else {
-    // No Redis: Process via in-memory queue
-    // Note: This is not distributed; suitable for local dev only
+    
   }
 }
 

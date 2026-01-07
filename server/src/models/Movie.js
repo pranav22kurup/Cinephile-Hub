@@ -7,7 +7,7 @@ const MovieSchema = new Schema(
     description: { type: String, default: '' },
     rating: { type: Number, default: 0, index: true },
     releaseDate: { type: Date, index: true },
-    duration: { type: Number, default: 0, index: true }, // minutes
+    duration: { type: Number, default: 0, index: true }, 
     director: { type: String, default: '' },
     genres: { type: [String], default: [] },
     posterUrl: { type: String, default: '' }

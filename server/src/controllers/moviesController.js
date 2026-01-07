@@ -46,7 +46,7 @@ exports.searchMovies = async (req, res, next) => {
 
     if (!q) return res.json({ items: [], total: 0 });
 
-    // First try text search alone (if index exists). If it errors, fallback to regex.
+    
     try {
       const textQuery = { $text: { $search: q } };
       const [items, total] = await Promise.all([
@@ -55,7 +55,7 @@ exports.searchMovies = async (req, res, next) => {
       ]);
       return res.json({ items, total });
     } catch (textErr) {
-      // Fallback: regex search on name/description (case-insensitive)
+
       const regexQuery = {
         $or: [
           { name: { $regex: q, $options: 'i' } },
@@ -86,7 +86,7 @@ exports.getMovieById = async (req, res, next) => {
 exports.addMovie = async (req, res, next) => {
   try {
     const data = req.body || {};
-    // Lazy insert via queue
+    
     const job = await enqueueLazyInsert(data);
     res.status(202).json({ message: 'Movie queued for insertion', jobId: job.id });
   } catch (err) {

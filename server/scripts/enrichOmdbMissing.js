@@ -26,7 +26,7 @@ async function run() {
   }
   await mongoose.connect(MONGO_URI, { autoIndex: true });
 
-  // Only movies missing poster or description
+  
   const cursor = Movie.find({ $or: [ { posterUrl: { $exists: false } }, { posterUrl: '' }, { posterUrl: 'N/A' }, { description: { $exists: false } }, { description: '' } ] }).cursor();
 
   const queue = new PQueue({ concurrency: 2, intervalCap: 4, interval: 1000 });
@@ -51,7 +51,7 @@ async function run() {
           }
         }
       } catch (e) {
-        // ignore individual errors
+        
       }
       processed += 1;
       if (processed % 25 === 0) console.log(`Enriched ${processed}`);

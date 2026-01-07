@@ -31,7 +31,7 @@ async function start() {
     const app = createApp();
     const server = app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
 
-    // Graceful shutdown
+    
     const shutdown = async () => {
       server.close();
       await mongoose.disconnect();

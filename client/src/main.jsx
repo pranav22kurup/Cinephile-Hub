@@ -13,8 +13,8 @@ const theme = createTheme({
     primary: { main: orange[500] },
     secondary: { main: deepOrange[400] },
     background: {
-      default: '#121212', // dark grey background
-      paper: '#1e1e1e'    // slightly lighter for cards/surfaces
+      default: '#121212', 
+      paper: '#1e1e1e'    
     }
   }
 })
