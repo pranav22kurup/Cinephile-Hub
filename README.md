@@ -72,6 +72,28 @@ To respect copyrights and policies, the project does not scrape IMDb. You can se
 - MongoDB indexes on `name`, `description` (text), and numeric fields used for sorting.
 - Lazy insert via BullMQ worker (Redis) with concurrency; fallback in-memory queue for local dev.
 
+## Deployment
+This is a monorepo. Configure each platform to point at the correct subfolder.
+
+### Backend — Render
+- Root Directory: `server`
+- Environment: `Node`
+- Build Command: `npm install`
+- Start Command: `npm start`
+- Health Check: `/health`
+- Env Vars: `MONGO_URI`, `JWT_SECRET`, optional `OMDB_API_KEY`, optional `REDIS_URL`
+
+### Frontend — Vercel
+- Root Directory: `client`
+- Framework Preset: `Vite`
+- Build Command: `npm run build`
+- Output Directory: `dist`
+- Env Vars: `VITE_API_URL=https://<your-render-backend>.onrender.com`
+- Optional: `client/vercel.json` rewrites `/api/:path*` → backend to avoid CORS.
+
+### Large Files & Git LFS
+GitHub blocks files >100 MB. If you need large datasets (e.g., `.tsv.gz`), use Git LFS (`git lfs track "*.tsv.gz"`) or keep datasets outside Git and download at build/runtime.
+
 
 ## License
 See LICENSE.

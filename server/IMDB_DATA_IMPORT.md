@@ -11,8 +11,7 @@ This script imports Top-250-like movies using IMDb public datasets and optionall
 ## Usage
 ```bash
 cd server
-# Set your Atlas or local Mongo URI in .env (MONGO_URI), and:
-# Optional: OMDB_API_KEY=your_key
+
 npm run import:imdb:top250
 ```
 
